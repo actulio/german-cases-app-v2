@@ -16,5 +16,6 @@
     "source.fixAll": "always",
     "source.organizeImports": "always",
     "source.removeUnusedImports": "always"
-  }
+  },
+  "cSpell.words": ["appwrite", "APPWRITE"]
 }
