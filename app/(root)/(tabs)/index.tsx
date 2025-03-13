@@ -1,24 +1,16 @@
-import BottomSheet from '@/components/BottomSheet';
-import GridOptions from '@/components/GridOptions';
+import BottomSheet from '@/components/articles/BottomSheet';
+import ProgressBar from '@/components/articles/ProgressBar';
 import usePracticeStore from '@/store/practice';
 import { Link, useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import { Button, Text, TouchableOpacity, View } from 'react-native';
-
-const OPTIONS = ['der', 'die', 'das', 'den', 'dem', 'des'];
+import React from 'react';
+import { Button, Text, View } from 'react-native';
 
 export default function Index() {
   const progress = usePracticeStore.use.progress();
   const increment = usePracticeStore.use.increment();
   const setInitialValues = usePracticeStore.use.setInitialValues();
-  const [caseArticles, setCaseArticles] = React.useState<string[]>([...OPTIONS]);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-  const router = useRouter();
 
-  const shuffleData = () => {
-    const shuffled = [...caseArticles].sort(() => Math.random() - 0.5);
-    setCaseArticles(shuffled);
-  };
+  const router = useRouter();
 
   const cond = progress.definite.current >= 3 && progress.definite.current < 5;
 
@@ -34,9 +26,9 @@ export default function Index() {
       <Link href="/signIn">Sign in</Link>
       <Link href="/learn">Learn</Link>
       <Link href="/profile">Profile</Link>
-      <Link href="/lessons/1">Lesson 1</Link>
 
-      <Button title="Go to Practice" onPress={() => router.push('/practice')} />
+      <Button title="Go to Definite" onPress={() => router.push('/articles/definite')} />
+      <Button title="Go to indefinite" onPress={() => router.push('/articles/indefinite')} />
 
       <Text>{progress.definite.current}</Text>
       <Text>{progress.definite.max}</Text>
@@ -47,22 +39,9 @@ export default function Index() {
           setInitialValues({ ...progress, definite: { current: 0, max: progress.definite.max } })
         }
       />
-      {/* <ProgressBar /> */}
-      <GridOptions selectedIdx={selectedIndex} data={caseArticles} onPress={setSelectedIndex} />
-      {/* <ShuffleButtons></ShuffleButtons> */}
-
-      <TouchableOpacity
-        onPress={shuffleData}
-        style={{
-          marginTop: 30,
-          height: 40,
-          width: 80,
-          backgroundColor: 'lightblue',
-          borderRadius: 10,
-        }}
-      >
-        <Text style={{ color: 'black', fontSize: 16 }}>Shuffle</Text>
-      </TouchableOpacity>
+      <View className="w-[300px]">
+        <ProgressBar stats={progress.definite} />
+      </View>
 
       <BottomSheet
         shouldShow={cond}

@@ -15,6 +15,7 @@ interface ProgressScreenState {
 interface AppState {
   progress: ProgressScreenState;
   increment: (option: keyof ProgressScreenState) => void;
+  reset: (option: keyof ProgressScreenState) => void;
   setInitialValues: (values: ProgressScreenState) => void;
 }
 
@@ -29,9 +30,9 @@ const usePracticeStoreBase = create<AppState>()((set) => ({
       max: 0,
     },
   },
-  increment: (option: keyof ProgressScreenState) =>
+  increment: (option: keyof ProgressScreenState) => {
     //TODO: probably good place to use Immer
-    set((state) => {
+    return set((state) => {
       const current = state.progress[option].current + 1;
       const max = state.progress[option].max < current ? current : state.progress[option].max;
 
@@ -41,11 +42,27 @@ const usePracticeStoreBase = create<AppState>()((set) => ({
           [option]: { current, max },
         },
       };
-    }),
-  setInitialValues: (values: ProgressScreenState) =>
-    set(() => ({
+    });
+  },
+  reset: (option: keyof ProgressScreenState) => {
+    //TODO: probably good place to use Immer
+    return set((state) => {
+      const current = 0;
+
+      return {
+        progress: {
+          ...state.progress,
+          [option]: { ...state.progress[option], current },
+        },
+      };
+    });
+  },
+
+  setInitialValues: (values: ProgressScreenState) => {
+    return set(() => ({
       progress: values,
-    })),
+    }));
+  },
 }));
 
 const usePracticeStore = createSelectors(usePracticeStoreBase);

@@ -1,3 +1,4 @@
+import ProgressHeader from '@/components/articles/ProgressHeader';
 import { useAuthContext } from '@/context/authContext';
 import { Redirect, Stack } from 'expo-router';
 import { ActivityIndicator } from 'react-native';
@@ -19,6 +20,12 @@ export default function AppLayout() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />;
+      <Stack.Screen
+        name="(exercises)/articles/[id]" // FIXME: this name flashes going back on Android
+        options={{
+          headerTitle: () => <ProgressHeader />,
+        }}
+      />
     </Stack>
   );
 }

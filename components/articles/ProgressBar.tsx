@@ -21,7 +21,7 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
     const newProgress = stats.max === 0 ? 0 : Math.min(stats.current / stats.max, 1);
     // NOTE: using withSpring makes it flash and zeroing
     progress.value = withTiming(newProgress * 100, {
-      duration: 1000,
+      duration: 500,
       easing: Easing.in(Easing.bounce),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,41 +30,20 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
   const animatedStyle = useAnimatedStyle(() => {
     return {
       width: `${progress.value}%`,
-      backgroundColor: '#32de84',
-      borderRadius: 10,
-    };
-  });
-
-  const innerAnimatedStyle = useAnimatedStyle(() => {
-    // NOTE: doing these calculations because i could not find any other way
-    // to get the inner bar to be the same size as the outer bar - some margin
-    const parentWidth = (progress.value / 100) * 220;
-    const adjustedWidth = parentWidth > 24 ? parentWidth - 12 : 0;
-
-    return {
-      width: adjustedWidth,
-      paddingHorizontal: parentWidth > 24 ? 6 : 0,
-      height: '20%',
-      top: '20%',
-      left: 4,
-      backgroundColor: '#4FFFB0',
-      borderRadius: 10,
     };
   });
 
   return (
-    //TODO: to use w-full we need to make the inner bar work correctly
-    // <View className="flex-row justify-between w-full items-center">
-    <View className="flex-row justify-center w-full items-center">
-      <View className="flex-row mx-2 h-5 w-[220px] overflow-hidden rounded-xl bg-gray-300">
-        <Animated.View style={animatedStyle}>
-          <Animated.View style={innerAnimatedStyle} />
+    <View className="flex-row justify-center items-center">
+      <View className="flex-row h-5 flex-1 overflow-hidden rounded-xl bg-gray-300">
+        <Animated.View className="rounded-xl bg-[#32de84]" style={[animatedStyle]}>
+          <View className="h-[25%] top-[20%] mx-1 rounded-lg bg-[#4FFFB0]" />
         </Animated.View>
       </View>
 
       <Text
+        className="font-rubik-medium text-sm mx-2"
         style={{
-          fontFamily: 'Rubik-Medium',
           color:
             stats.current === stats.max ? (stats.max === 0 ? '#C8C8C8' : '#a4dab2') : '#666876',
         }}

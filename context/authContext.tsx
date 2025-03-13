@@ -34,7 +34,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     fn: getCurrentUser,
   });
 
-  const isLoggedIn = !!user;
+  // const isLoggedIn = !!user;
+  const isLoggedIn = true;
 
   // console.log(JSON.stringify(user, null, 2));
 

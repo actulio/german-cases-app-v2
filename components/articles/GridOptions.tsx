@@ -5,39 +5,38 @@ import Animated, { Layout } from 'react-native-reanimated';
 
 interface Props {
   data: string[];
-  selectedIdx: number;
   selected: string;
-  onPress: (idx: number) => void;
+  disabled: boolean;
+  onPress: (value: string) => void;
 }
 
 const GridOptions = (props: Props) => {
-  const { data, selectedIdx, onPress } = props;
+  const { data, selected, disabled, onPress } = props;
   const { theme } = React.useContext(ThemeContext);
 
-  const handleOnPress = (index: number) => {
-    const idx = selectedIdx !== index ? index : -1;
-    onPress(idx);
+  const handleOnPress = (value: string) => {
+    const newValue = selected !== value ? value : '';
+    onPress(newValue);
   };
-
-  console.log(selectedIdx);
 
   return (
     <View className="flex items-center justify-center">
       <View className="flex flex-row flex-wrap justify-around top-0 w-[300px] ">
-        {data.map((value, index) => {
+        {data.map((value) => {
           return (
             <Animated.View key={value} layout={Layout.springify().damping(15).stiffness(100)}>
               <TouchableOpacity
                 // NOTE: on IOS simulator onPress is not working
-                onPressIn={() => handleOnPress(index)}
+                disabled={disabled}
+                onPressIn={() => handleOnPress(value)}
                 activeOpacity={0.3}
-                className="justify-center items-center mt-3 p-3 rounded-2xl h-[50px] w-[80px] border border-b-4"
+                className="justify-center items-center mt-3 p-3 rounded-2xl h-[50px] w-[80px] border border-b-4 bg-g"
                 style={[
-                  selectedIdx === index
+                  selected === value
                     ? {
                         borderColor: theme.opSelectedBg,
                         borderBottomColor: theme.opSelectedBgBottom,
-                        backgroundColor: 'red',
+                        backgroundColor: '#b2b6be',
                       }
                     : {
                         borderColor: theme.opBorder,

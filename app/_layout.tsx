@@ -1,4 +1,5 @@
 import AuthProvider from '@/context/authContext';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 import { useFonts } from 'expo-font';
 import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
@@ -23,9 +24,10 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <AuthProvider>
-      {/* <Stack screenOptions={{ headerShown: false }} /> */}
-      <Slot />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Slot />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

@@ -14,8 +14,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
-    "source.organizeImports": "always",
-    "source.removeUnusedImports": "always"
+    "source.organizeImports": "always"
   },
   "cSpell.words": ["appwrite", "APPWRITE", "motify", "springify"]
 }
