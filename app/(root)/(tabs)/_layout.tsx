@@ -1,33 +1,62 @@
 import { Tabs } from 'expo-router';
-import { Image, ImageSourcePropType, Text, View } from 'react-native';
+import { BookOpenCheck, NotebookPen, UserRoundCog } from 'lucide-react-native';
+import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
 
-import icons from '@/constants/icons';
+// notebook-pen
+// user-round-cog
+// book-open-check
+
+const icons = {
+  practice: NotebookPen,
+  learn: BookOpenCheck,
+  profile: UserRoundCog,
+};
 
 const TabIcon = ({
   focused,
-  icon,
+  iconName,
   title,
 }: {
   focused: boolean;
-  icon: ImageSourcePropType;
+  iconName: 'practice' | 'learn' | 'profile';
   title: string;
-}) => (
-  <View className="flex-1 mt-3 flex flex-col items-center">
-    <Image
-      source={icon}
-      tintColor={focused ? '#0061FF' : '#666876'}
-      resizeMode="contain"
-      className="size-6"
-    />
-    <Text
-      className={`${
-        focused ? 'text-primary-300 font-rubik-medium' : 'text-black-200 font-rubik'
-      } text-xs w-full text-center mt-1`}
+}) => {
+  const Icon = icons[iconName];
+
+  return (
+    <Animated.View
+      // layout={LinearTransition.springify().damping(80).stiffness(200)}
+      className="flex-1 mt-3 flex flex-col items-center"
     >
-      {title}
-    </Text>
-  </View>
-);
+      <Icon size={focused ? 18 : 24} color={focused ? '#0061FF' : '#666876'} />
+      {focused && (
+        <Animated.Text
+          entering={FadeInUp.springify().damping(80).stiffness(200)}
+          exiting={FadeOutDown.springify().damping(80).stiffness(200)}
+          className="text-primary-300 font-rubik-medium text-xs w-full text-center mt-1"
+        >
+          {title}
+        </Animated.Text>
+      )}
+    </Animated.View>
+  );
+};
+
+// <View className="flex-1 mt-3 flex flex-col items-center">
+//   <Image
+//     source={icon}
+//     tintColor={focused ? '#0061FF' : '#666876'}
+//     resizeMode="contain"
+//     className="size-6"
+//   />
+//   <Text
+//     className={`${
+//       focused ? 'text-primary-300 font-rubik-medium' : 'text-black-200 font-rubik'
+//     } text-xs w-full text-center mt-1`}
+//   >
+//     {title}
+//   </Text>
+// </View>
 
 const TabsLayout = () => {
   return (
@@ -48,8 +77,10 @@ const TabsLayout = () => {
         options={{
           title: 'Practice',
           headerShown: false,
+          animation: 'shift',
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.home} title="Practice" />
+            <TabIcon focused={focused} iconName="practice" title="Practice" />
           ),
         }}
       />
@@ -58,9 +89,9 @@ const TabsLayout = () => {
         options={{
           title: 'Learn',
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.search} title="Learn" />
-          ),
+          animation: 'shift',
+          tabBarHideOnKeyboard: true,
+          tabBarIcon: ({ focused }) => <TabIcon focused={focused} iconName="learn" title="Learn" />,
         }}
       />
       <Tabs.Screen
@@ -68,8 +99,10 @@ const TabsLayout = () => {
         options={{
           title: 'Profile',
           headerShown: false,
+          animation: 'shift',
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.person} title="Profile" />
+            <TabIcon focused={focused} iconName="profile" title="Profile" />
           ),
         }}
       />

@@ -1,9 +1,9 @@
 import React, { createContext, ReactNode, useContext } from 'react';
 
-import { getCurrentUser } from './appwrite';
-import { useAppwrite } from './useAppwrite';
+import { getCurrentUser } from '../lib/appwrite';
+import { useAppwrite } from '../lib/useAppwrite';
 
-interface GlobalContextType {
+interface AuthContextType {
   isLoggedIn: boolean;
   user: User | null;
   loading: boolean;
@@ -17,15 +17,15 @@ interface User {
   avatar: string;
 }
 
-const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-interface GlobalProviderProps {
+interface AuthProviderProps {
   children: ReactNode;
 }
 
 // TODO: change it to Zustand just for the sake of it
 
-export const GlobalProvider = ({ children }: GlobalProviderProps) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const {
     data: user,
     loading,
@@ -39,7 +39,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   // console.log(JSON.stringify(user, null, 2));
 
   return (
-    <GlobalContext.Provider
+    <AuthContext.Provider
       value={{
         isLoggedIn,
         user: user!,
@@ -48,15 +48,15 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
       }}
     >
       {children}
-    </GlobalContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export const useGlobalContext = (): GlobalContextType => {
-  const context = useContext(GlobalContext);
-  if (!context) throw new Error('useGlobalContext must be used within a GlobalProvider');
+export const useAuthContext = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error('useAuthContext must be used within the AuthProvider');
 
   return context;
 };
 
-export default GlobalProvider;
+export default AuthProvider;

@@ -1,6 +1,6 @@
-import GlobalProvider from '@/lib/global-provider';
+import AuthProvider from '@/context/authContext';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
+import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import './global.css';
 
@@ -23,8 +23,9 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <GlobalProvider>
-      <Stack screenOptions={{ headerShown: false }} />
-    </GlobalProvider>
+    <AuthProvider>
+      {/* <Stack screenOptions={{ headerShown: false }} /> */}
+      <Slot />
+    </AuthProvider>
   );
 }
