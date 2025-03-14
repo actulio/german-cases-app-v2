@@ -1,4 +1,3 @@
-import { ThemeContext } from '@/context/themeContext';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Animated, { Layout } from 'react-native-reanimated';
@@ -12,7 +11,6 @@ interface Props {
 
 const GridOptions = (props: Props) => {
   const { data, selected, disabled, onPress } = props;
-  const { theme } = React.useContext(ThemeContext);
 
   const handleOnPress = (value: string) => {
     const newValue = selected !== value ? value : '';
@@ -30,24 +28,9 @@ const GridOptions = (props: Props) => {
                 disabled={disabled}
                 onPressIn={() => handleOnPress(value)}
                 activeOpacity={0.3}
-                className="justify-center items-center mt-3 p-3 rounded-2xl h-[50px] w-[80px] border border-b-4 bg-g"
-                style={[
-                  selected === value
-                    ? {
-                        borderColor: theme.opSelectedBg,
-                        borderBottomColor: theme.opSelectedBgBottom,
-                        backgroundColor: '#b2b6be',
-                      }
-                    : {
-                        borderColor: theme.opBorder,
-                        borderBottomColor: theme.opBorderBottom,
-                        backgroundColor: theme.opBg,
-                      },
-                ]}
+                className={`justify-center items-center mt-3 p-3 border-[#D3D3D3] rounded-2xl h-[50px] w-[80px] border border-b-4 ${selected !== value ? 'bg-background  border-b-[#D3D3D3]' : 'bg-gray-100 border-b-[#C8C8C8]'}`}
               >
-                <Text className="font-rubik-light" style={{ color: theme.opTxt }}>
-                  {value}
-                </Text>
+                <Text className="font-rubik-light text-text-secondary">{value}</Text>
               </TouchableOpacity>
             </Animated.View>
           );

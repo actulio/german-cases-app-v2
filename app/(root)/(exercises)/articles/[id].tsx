@@ -49,7 +49,7 @@ const ArticleExercises = () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center bg-red-100 ">
+    <View className="flex-1 justify-center items-center">
       <ArticleCard choice={selected} gCase={randomOption.gCase} gender={randomOption.gender} />
 
       <GridOptions

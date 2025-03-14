@@ -1,4 +1,3 @@
-import { ThemeContext } from '@/context/themeContext';
 import React, { useEffect } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import Animated, {
@@ -16,8 +15,6 @@ interface Props {
 }
 
 const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props) => {
-  const { theme } = React.useContext(ThemeContext);
-
   const continueY = useSharedValue(0);
   const nextY = useSharedValue(30); // Start off-screen
 
@@ -57,16 +54,17 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
   }));
 
   const getButtonStyles = () => {
-    if (!hasSelection) return { backgroundColor: theme.btnBgClear, textColor: theme.btnTxt };
+    if (!hasSelection)
+      return { backgroundColor: 'bg-accent-500', textColor: 'text-text-secondary' };
 
     if (isSubmitted) {
       return {
-        backgroundColor: isCorrect ? theme.btnBgCorrect : theme.btnBgWrong,
-        textColor: isCorrect ? theme.btnTxtCorrect : theme.btnTxtWrong,
+        backgroundColor: isCorrect ? 'bg-tertiary-500' : 'bg-error-500',
+        textColor: isCorrect ? 'text-white' : 'text-white', //FIXME: for darkmode
       };
     }
 
-    return { backgroundColor: theme.btnBgSelected, textColor: theme.btnTxtSelected };
+    return { backgroundColor: 'bg-tertiary-300', textColor: 'text-white' };
   };
 
   const { backgroundColor, textColor } = getButtonStyles();
@@ -78,18 +76,13 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
       className="flex-1"
     >
       <View
-        className="items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 border-gray-200 z-10 overflow-hidden"
-        style={{ backgroundColor, zIndex: 20 }}
+        className={`${backgroundColor} items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 border-gray-200 z-20 overflow-hidden`}
       >
         <Animated.View className="absolute" style={continueStyle}>
-          <Text className="text-2xl font-rubik-bold" style={{ color: textColor }}>
-            Answer
-          </Text>
+          <Text className={`${textColor} text-2xl font-rubik-bold`}>Answer</Text>
         </Animated.View>
         <Animated.View className="absolute" style={nextStyle}>
-          <Text className="text-2xl font-rubik-bold" style={{ color: textColor }}>
-            Next
-          </Text>
+          <Text className={`${textColor} text-2xl font-rubik-bold`}>Next</Text>
         </Animated.View>
       </View>
     </TouchableWithoutFeedback>

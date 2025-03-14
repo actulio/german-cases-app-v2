@@ -2,6 +2,7 @@
 module.exports = {
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
+  darkMode: 'selector',
   theme: {
     extend: {
       fontFamily: {
@@ -14,22 +15,37 @@ module.exports = {
       },
       colors: {
         primary: {
-          100: '#0061FF0A',
-          200: '#0061FF1A',
-          300: '#0061FF',
+          300: 'var(--color-primary-300)',
+          500: 'var(--color-primary-500)',
+          700: 'var(--color-primary-700)',
+          900: 'var(--color-primary-900)',
+        },
+        secondary: {
+          300: 'var(--color-secondary-300)',
+          500: 'var(--color-secondary-500)',
+          700: 'var(--color-secondary-700)',
+        },
+        tertiary: {
+          300: 'var(--color-tertiary-300)',
+          500: 'var(--color-tertiary-500)',
+          700: 'var(--color-tertiary-700)',
+        },
+        background: 'var(--color-background)',
+        text: {
+          primary: 'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
+          error: 'var(--color-text-error)',
+        },
+        error: {
+          300: 'var(--color-error-300)',
+          500: 'var(--color-error-500)',
         },
         accent: {
-          100: '#FBFBFD',
+          500: 'var(--color-accent-500)',
         },
-        black: {
-          DEFAULT: '#000000',
-          100: '#8C8E98',
-          200: '#666876',
-          300: '#191D31',
-        },
-        danger: '#F75555',
       },
     },
   },
   plugins: [],
 };
+// error: '#F75555',

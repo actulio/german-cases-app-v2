@@ -9,7 +9,6 @@
     "typescriptreact"
     // ...
   ],
-  "colorize.decoration_type": "dot",
   "editor.wordWrap": "on",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {

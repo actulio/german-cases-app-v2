@@ -1,4 +1,3 @@
-import { ThemeContext } from '@/context/themeContext';
 import React, { useEffect } from 'react';
 import { Text } from 'react-native';
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated';
@@ -11,7 +10,6 @@ interface BottomSheetProps {
 
 const BottomSheet = ({ shouldShow, isCorrect, text }: BottomSheetProps) => {
   const height = useSharedValue(0);
-  const { theme } = React.useContext(ThemeContext);
 
   useEffect(() => {
     height.value = withSpring(shouldShow ? 160 : 0, { damping: 80, stiffness: 200 });
@@ -22,15 +20,13 @@ const BottomSheet = ({ shouldShow, isCorrect, text }: BottomSheetProps) => {
     <>
       {shouldShow ? (
         <Animated.View
-          className="w-full bg-violet-300 absolute bottom-0 px-5 py-3"
+          className={`${isCorrect ? 'bg-tertiary-300' : 'bg-error-300'} w-full absolute bottom-0 px-5 py-3`}
           style={{ height }}
         >
           {isCorrect ? (
-            <Text className="font-rubik-medium text-xl" style={{ color: theme.bsTxtCorrect }}>
-              Correct!
-            </Text>
+            <Text className="font-rubik-medium text-xl text-tertiary-700">Correct!</Text>
           ) : (
-            <Text className="font-rubik-medium text-xl" style={{ color: theme.bsTxtWrong }}>
+            <Text className="font-rubik-medium text-xl text-error-500">
               The correct answer is: {text.charAt(0).toUpperCase().concat(text.slice(1))}
             </Text>
           )}

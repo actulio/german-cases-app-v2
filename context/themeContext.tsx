@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const themes = {
   light: {
     purple: '#6A40D6',
@@ -26,10 +24,11 @@ export const themes = {
 
     opBg: '#FFFFFF',
     opSelectedBg: '#F0F0F0',
-    opSelectedBgBottom: '#C8C8C8',
-    opTxt: '#454545',
     opBorder: '#E8E8E8',
     opBorderBottom: '#D3D3D3',
+    opSelectedBorderBottom: '#C8C8C8',
+
+    opTxt: '#454545',
 
     menuText: '#454545',
     menuBg: '#FFFFFF',
@@ -83,8 +82,3 @@ export const themes = {
   },
 };
 // #ff4d4d , #ffff99
-
-export const ThemeContext = React.createContext({
-  theme: themes.light,
-  toggleTheme: () => {},
-});
