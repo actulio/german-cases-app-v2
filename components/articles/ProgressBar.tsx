@@ -19,7 +19,7 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
 
   useEffect(() => {
     const newProgress = stats.max === 0 ? 0 : Math.min(stats.current / stats.max, 1);
-    // NOTE: using withSpring makes it flash and zeroing
+    // NOTE: using withSpring makes it flash
     progress.value = withTiming(newProgress * 100, {
       duration: 500,
       easing: Easing.in(Easing.bounce),
@@ -35,18 +35,14 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
 
   return (
     <View className="flex-row justify-center items-center">
-      <View className="flex-row h-5 flex-1 overflow-hidden rounded-xl bg-gray-300">
-        <Animated.View className="rounded-xl bg-[#32de84]" style={[animatedStyle]}>
-          <View className="h-[25%] top-[20%] mx-1 rounded-lg bg-[#4FFFB0]" />
+      <View className="flex-row h-5 flex-1 overflow-hidden rounded-xl bg-background-medium">
+        <Animated.View className="rounded-xl bg-primary-500" style={[animatedStyle]}>
+          <View className="h-[25%] top-[20%] mx-1 rounded-lg bg-primary-300" />
         </Animated.View>
       </View>
 
       <Text
-        className="font-rubik-medium text-sm mx-2"
-        style={{
-          color:
-            stats.current === stats.max ? (stats.max === 0 ? '#C8C8C8' : '#a4dab2') : '#666876',
-        }}
+        className={`font-rubik-medium text-sm mx-2 ${stats.current === stats.max ? 'text-tertiary-500' : 'text-text-inactive'}`}
       >
         {`${stats.current}/${stats.max}`}
       </Text>

@@ -28,9 +28,13 @@ const GridOptions = (props: Props) => {
                 disabled={disabled}
                 onPressIn={() => handleOnPress(value)}
                 activeOpacity={0.3}
-                className={`justify-center items-center mt-3 p-3 border-[#D3D3D3] rounded-2xl h-[50px] w-[80px] border border-b-4 ${selected !== value ? 'bg-background  border-b-[#D3D3D3]' : 'bg-gray-100 border-b-[#C8C8C8]'}`}
+                className={`justify-center items-center shadow-md mt-3 p-3 rounded-2xl h-[50px] w-[80px] ${selected !== value ? 'bg-background-light' : 'bg-primary-500'}`}
               >
-                <Text className="font-rubik-light text-text-secondary">{value}</Text>
+                <Text
+                  className={`font-rubik text-xl ${selected !== value ? 'text-text-inactive' : 'text-text-active'}`}
+                >
+                  {value}
+                </Text>
               </TouchableOpacity>
             </Animated.View>
           );

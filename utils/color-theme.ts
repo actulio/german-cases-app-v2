@@ -15,20 +15,26 @@ export const themes = {
     '--color-tertiary-500': '#4FC9AE', // Main teal
     '--color-tertiary-700': '#2A9C84', // Darker teal
 
-    '--color-background': '#FFFFFF', // Light background
-    '--color-text-primary': '#222222', // Main text
-    '--color-text-secondary': '#666666', // Lighter text
-    '--color-text-error': '#f25050',
+    '--color-background-light': '#FFFFFF',
+    '--color-background-medium': '#d1d5db',
+    '--color-background-dark': '#22252b',
 
-    '--color-error-500': '#f25050', // Red
-    '--color-error-300': '#fab8b8', // Red
+    '--color-text-active': '#FFFFFF',
+    '--color-text-inactive': '#666666',
+    '--color-text-disabled': '#F5F5F5',
+
+    '--color-error-500': '#f25050',
+    '--color-error-300': '#fab8b8',
     '--color-accent-500': '#F5F5F5',
+
+    '--color-shadow-500': '#cccccc',
   }),
 
   dark: vars({
     '--color-primary-300': '#9A73EB', // Slightly muted purple
     '--color-primary-500': '#6A40D6', // Main brand purple
     '--color-primary-700': '#3D2486', // Deeper purple
+    '--color-primary-900': '#2E1A69', //
 
     '--color-secondary-300': '#D98A66', // Muted peach
     '--color-secondary-500': '#C76A3F', // Rich orange
@@ -38,13 +44,18 @@ export const themes = {
     '--color-tertiary-500': '#3CA38D', // Main teal
     '--color-tertiary-700': '#267E69', // Darker teal
 
-    '--color-background': '#0F0F0F', // Dark background
-    '--color-text-primary': '#EDE7FB', // Light text
-    '--color-text-secondary': '#B3A6D1', // Muted text
-    '--color-text-error': '#f25050',
+    '--color-background-light': '#FFFFFF',
+    '--color-background-medium': '#d1d5db',
+    '--color-background-dark': '#22252b',
 
-    '--color-error-500': '#f25050', // Red
-    '--color-error-300': '#fab8b8', // Red
+    '--color-text-active': '#FFFFFF',
+    '--color-text-inactive': '#222222',
+    '--color-text-disabled': '#F5F5F5',
+
+    '--color-error-500': '#f25050',
+    '--color-error-300': '#fab8b8',
     '--color-accent-500': '#F5F5F5',
+
+    '--color-shadow-500': '#cccccc',
   }),
 };

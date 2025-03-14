@@ -54,17 +54,18 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
   }));
 
   const getButtonStyles = () => {
-    if (!hasSelection)
-      return { backgroundColor: 'bg-accent-500', textColor: 'text-text-secondary' };
+    if (!hasSelection) {
+      return { backgroundColor: 'bg-accent-500', textColor: 'text-text-inactive' };
+    }
 
     if (isSubmitted) {
       return {
         backgroundColor: isCorrect ? 'bg-tertiary-500' : 'bg-error-500',
-        textColor: isCorrect ? 'text-white' : 'text-white', //FIXME: for darkmode
+        textColor: 'text-text-active',
       };
     }
 
-    return { backgroundColor: 'bg-tertiary-300', textColor: 'text-white' };
+    return { backgroundColor: 'bg-primary-500', textColor: 'text-text-active' };
   };
 
   const { backgroundColor, textColor } = getButtonStyles();
@@ -76,7 +77,7 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
       className="flex-1"
     >
       <View
-        className={`${backgroundColor} items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 border-gray-200 z-20 overflow-hidden`}
+        className={`${backgroundColor} items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 border-[#cccccc] z-20 overflow-hidden`}
       >
         <Animated.View className="absolute" style={continueStyle}>
           <Text className={`${textColor} text-2xl font-rubik-bold`}>Answer</Text>

@@ -11,7 +11,7 @@ const ProgressHeader = () => {
   const { width: deviceWidth } = Dimensions.get('window');
 
   return (
-    <View className="flex bg-green-200" style={{ maxWidth: deviceWidth - 80 }}>
+    <View className="flex" style={{ width: deviceWidth - 80 }}>
       {stats && <ProgressBar stats={stats} />}
     </View>
   );

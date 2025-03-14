@@ -30,11 +30,17 @@ module.exports = {
           500: 'var(--color-tertiary-500)',
           700: 'var(--color-tertiary-700)',
         },
-        background: 'var(--color-background)',
+        background: {
+          light: 'var(--color-background-light)',
+          medium: 'var(--color-background-medium)',
+          dark: 'var(--color-background-dark)',
+        },
+
         text: {
-          primary: 'var(--color-text-primary)',
-          secondary: 'var(--color-text-secondary)',
           error: 'var(--color-text-error)',
+          active: 'var(--color-text-active)',
+          inactive: 'var(--color-text-inactive)',
+          disabled: 'var(--color-text-disabled)',
         },
         error: {
           300: 'var(--color-error-300)',
@@ -42,6 +48,9 @@ module.exports = {
         },
         accent: {
           500: 'var(--color-accent-500)',
+        },
+        shadow: {
+          500: 'var(--color-shadow-500)',
         },
       },
     },
