@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { BookOpenCheck, NotebookPen, UserRoundCog } from 'lucide-react-native';
-import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
+import { Text, View } from 'react-native';
 
 // notebook-pen
 // user-round-cog
@@ -24,39 +24,17 @@ const TabIcon = ({
   const Icon = icons[iconName];
 
   return (
-    <Animated.View
-      // layout={LinearTransition.springify().damping(80).stiffness(200)}
-      className="flex-1 mt-3 flex flex-col items-center"
-    >
-      <Icon size={focused ? 18 : 24} color={focused ? '#0061FF' : '#666876'} />
+    <View className="flex-1 mt-3 flex flex-col items-center">
+      {/* TODO: get correct colros from theme */}
+      <Icon size={focused ? 18 : 24} color={focused ? '#6A40D6' : '#666876'} />
       {focused && (
-        <Animated.Text
-          entering={FadeInUp.springify().damping(80).stiffness(200)}
-          exiting={FadeOutDown.springify().damping(80).stiffness(200)}
-          className="text-primary-300 font-rubik-medium text-xs w-full text-center mt-1"
-        >
+        <Text className="text-primary-300 font-rubik-medium text-xs w-full text-center mt-1">
           {title}
-        </Animated.Text>
+        </Text>
       )}
-    </Animated.View>
+    </View>
   );
 };
-
-// <View className="flex-1 mt-3 flex flex-col items-center">
-//   <Image
-//     source={icon}
-//     tintColor={focused ? '#0061FF' : '#666876'}
-//     resizeMode="contain"
-//     className="size-6"
-//   />
-//   <Text
-//     className={`${
-//       focused ? 'text-primary-300 font-rubik-medium' : 'text-black-200 font-rubik'
-//     } text-xs w-full text-center mt-1`}
-//   >
-//     {title}
-//   </Text>
-// </View>
 
 const TabsLayout = () => {
   return (
@@ -64,9 +42,7 @@ const TabsLayout = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: 'white',
           position: 'absolute',
-          borderTopColor: '#0061FF1A',
           borderTopWidth: 1,
           minHeight: 70,
         },

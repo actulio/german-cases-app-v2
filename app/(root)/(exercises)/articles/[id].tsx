@@ -1,7 +1,7 @@
 import ArticleCard from '@/components/articles/ArticleCard';
-import BottomSheet from '@/components/articles/BottomSheet';
-import ContinueButton from '@/components/articles/ContinueButton';
 import GridOptions from '@/components/articles/GridOptions';
+import BottomSheet from '@/components/shared/BottomSheet';
+import ContinueButton from '@/components/shared/ContinueButton';
 import { ALL_ARTICLES, ARTICLE_OPTIONS, ArticleType, CASES, GENDERS } from '@/constants/articles';
 import usePracticeStore from '@/store/practice';
 
@@ -23,7 +23,7 @@ const ArticleExercises = () => {
   const [randomOption, setRandomOption] = useState(getRandomOption());
   const [isSubmitted, setIsSubmitted] = useState(false);
   const incrementProgress = usePracticeStore.use.increment();
-  const resetProgress = usePracticeStore.use.reset();
+  const resetProgress = usePracticeStore.use.restart();
 
   const isCorrect =
     isSubmitted && ALL_ARTICLES[id][randomOption.gCase][randomOption.gender] === selected;
@@ -50,14 +50,22 @@ const ArticleExercises = () => {
 
   return (
     <View className="flex-1 justify-center items-center">
-      <ArticleCard choice={selected} gCase={randomOption.gCase} gender={randomOption.gender} />
+      <View className="flex-1 justify-center items-center translate-y-[-50px] gap-10">
+        <ArticleCard
+          choice={selected}
+          title={randomOption.gCase}
+          subtitle={randomOption.gender}
+          isSubmitted={isSubmitted}
+          isCorrect={isCorrect}
+        />
 
-      <GridOptions
-        selected={selected}
-        disabled={isSubmitted}
-        data={articlesToShuffle}
-        onPress={setSelected}
-      />
+        <GridOptions
+          selected={selected}
+          disabled={isSubmitted}
+          data={articlesToShuffle}
+          onPress={setSelected}
+        />
+      </View>
 
       <ContinueButton
         hasSelection={selected !== ''}

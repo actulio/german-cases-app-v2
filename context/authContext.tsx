@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useContext } from 'react';
 
+import { useAppwrite } from '../hooks/useAppwrite';
 import { getCurrentUser } from '../lib/appwrite';
-import { useAppwrite } from '../lib/useAppwrite';
 
 interface AuthContextType {
   isLoggedIn: boolean;

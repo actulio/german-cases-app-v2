@@ -1,33 +1,58 @@
+import GlowingWrapper from '@/components/shared/GlowWrapper';
 import { CaseOption, GenderOption } from '@/constants/articles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 interface Props {
-  gCase: CaseOption; //NOTE: case is a reserved word, so gCase is used instead
-  gender: GenderOption;
+  title: CaseOption; //NOTE: this can probably be changed to accept a generic
+  subtitle: GenderOption;
   choice: string;
+  isSubmitted: boolean;
+  isCorrect: boolean;
 }
 
-const ArticleCard = ({ gCase, gender, choice }: Props) => {
+const ArticleCard = ({ title, subtitle, choice, isCorrect, isSubmitted }: Props) => {
+  const translateX = useSharedValue(0);
+
+  useEffect(() => {
+    if (isSubmitted && !isCorrect) {
+      translateX.value = withSequence(
+        withTiming(-10, { duration: 50 }),
+        withTiming(10, { duration: 50 }),
+        withTiming(-10, { duration: 50 }),
+        withTiming(10, { duration: 50 }),
+        withTiming(0, { duration: 50 }),
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitted, isCorrect]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: translateX.value }],
+  }));
+
   return (
-    <View
-      className="w-[250px] h-[200px] translate-y-[-80px] rounded-2xl mb-2 p-5 items-center justify-center shadow-lg bg-primary-500 "
-      // style={{
-      //   shadowColor: '#000',
-      //   shadowOffset: { width: 0, height: 10 },
-      //   shadowOpacity: 0.2,
-      //   shadowRadius: 15,
-      //   elevation: 10,
-      // }}
-    >
-      <Text className="text-3xl capitalize font-rubik-medium text-text-active">{gCase}</Text>
-      <Text className="text-2xl capitalize font-rubik-medium text-primary-700">{gender}</Text>
-      <View
-        className={`${choice ? 'bg-transparent' : 'bg-primary-300'} items-center justify-center mt-4 h-10 w-20`}
+    // FIXME: get correct color from theme
+    <GlowingWrapper isGlowing={isSubmitted && isCorrect} glowColor="#9A73EB">
+      <Animated.View
+        className="w-[250px] h-[200px] rounded-2xl mb-2 p-5 items-center justify-center shadow-lg bg-primary-500 "
+        style={[animatedStyle]}
       >
-        <Text className="text-white text-2xl font-rubik">{choice}</Text>
-      </View>
-    </View>
+        <Text className="text-3xl capitalize font-rubik-medium text-text-active">{title}</Text>
+        <Text className="text-2xl capitalize font-rubik-medium text-primary-700">{subtitle}</Text>
+        <View
+          className={`${choice ? 'bg-transparent' : 'bg-primary-300'} items-center justify-center mt-4 h-10 w-20`}
+        >
+          <Text className="text-white text-2xl font-rubik">{choice}</Text>
+        </View>
+      </Animated.View>
+    </GlowingWrapper>
   );
 };
 

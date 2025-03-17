@@ -1,4 +1,4 @@
-import ProgressBar from '@/components/articles/ProgressBar';
+import ProgressBar from '@/components/shared/ProgressBar';
 import { useFindNavigationParam } from '@/hooks/useFindNavigationParam';
 import usePracticeStore from '@/store/practice';
 import React from 'react';

@@ -76,6 +76,7 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
       onPress={onPress}
       className="flex-1"
     >
+      {/* FIXME: fix the border color on success/error */}
       <View
         className={`${backgroundColor} items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 border-[#cccccc] z-20 overflow-hidden`}
       >
