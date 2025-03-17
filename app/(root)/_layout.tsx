@@ -1,4 +1,4 @@
-import ProgressHeader from '@/components/articles/ProgressHeader';
+import ProgressHeader from '@/components/shared/ProgressHeader';
 import { useAuthContext } from '@/context/authContext';
 import { Redirect, Stack } from 'expo-router';
 import { ActivityIndicator } from 'react-native';

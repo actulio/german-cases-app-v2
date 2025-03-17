@@ -1,5 +1,5 @@
-import BottomSheet from '@/components/articles/BottomSheet';
-import ProgressBar from '@/components/articles/ProgressBar';
+import BottomSheet from '@/components/shared/BottomSheet';
+import ProgressBar from '@/components/shared/ProgressBar';
 import usePracticeStore from '@/store/practice';
 import { Link, useRouter } from 'expo-router';
 import React from 'react';
@@ -8,7 +8,7 @@ import { Button, Text, View } from 'react-native';
 export default function Index() {
   const progress = usePracticeStore.use.progress();
   const increment = usePracticeStore.use.increment();
-  const setInitialValues = usePracticeStore.use.setInitialValues();
+  const reset = usePracticeStore.use.reset();
 
   const router = useRouter();
 
@@ -33,12 +33,7 @@ export default function Index() {
       <Text>{progress.definite.current}</Text>
       <Text>{progress.definite.max}</Text>
       <Button title="Increment" onPress={() => increment('definite')} />
-      <Button
-        title="Reset"
-        onPress={() =>
-          setInitialValues({ ...progress, definite: { current: 0, max: progress.definite.max } })
-        }
-      />
+      <Button title="Reset" onPress={() => reset('definite')} />
       <View className="w-[300px]">
         <ProgressBar stats={progress.definite} />
       </View>

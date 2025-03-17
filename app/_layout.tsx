@@ -1,5 +1,7 @@
 import AuthProvider from '@/context/authContext';
+import { storageGet } from '@/lib/storage';
 import { ThemeProvider } from '@/providers/ThemeProvider';
+import usePracticeStore from '@/store/practice';
 import { useFonts } from 'expo-font';
 import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
@@ -15,9 +17,25 @@ export default function RootLayout() {
     'Rubik-Light': require('../assets/fonts/Rubik-Light.ttf'),
   });
 
+  const setInitialValues = usePracticeStore.use.setInitialValues();
+
   useEffect(() => {
+    const fetchInitialValues = async () => {
+      const progress = {
+        definite: {
+          current: Number((await storageGet('definite.current')) || 0),
+          max: Number((await storageGet('definite.max')) || 0),
+        },
+        indefinite: {
+          current: Number((await storageGet('indefinite.current')) || 0),
+          max: Number((await storageGet('indefinite.max')) || 0),
+        },
+      };
+      setInitialValues(progress);
+    };
     if (fontsLoaded) {
       SplashScreen.hideAsync();
+      fetchInitialValues();
     }
   }, [fontsLoaded]);
 
