@@ -25,7 +25,6 @@ export const storageSet = async (key: StorageKeys, value: any) => {
 export const storageGet = async (key: StorageKeys): Promise<any | null> => {
   if (isExpoGo) {
     const result = await AsyncStorage.getItem(key);
-    console.log(key, result);
     return result ? JSON.parse(result) : null;
   } else {
     return storage.getString(key) || null;

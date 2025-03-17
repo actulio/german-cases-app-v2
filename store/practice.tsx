@@ -1,5 +1,6 @@
 import { storageSet } from '@/lib/storage';
 import { createSelectors } from '@/utils/createSelectors';
+import { produce } from 'immer';
 import { create } from 'zustand';
 
 interface ProgressScreenState {
@@ -32,48 +33,40 @@ const usePracticeStoreBase = create<AppState>()((set) => ({
       max: 0,
     },
   },
+
   increment: (option: keyof ProgressScreenState) => {
-    return set((state) => {
-      const current = state.progress[option].current + 1;
-      const max = state.progress[option].max < current ? current : state.progress[option].max;
+    return set(
+      produce((state) => {
+        const current = state.progress[option].current + 1;
+        const max = state.progress[option].max < current ? current : state.progress[option].max;
 
-      storageSet(`${option}.current`, current).catch(console.error);
-      if (current >= max) storageSet(`${option}.max`, max).catch(console.error);
+        storageSet(`${option}.current`, current).catch(console.error);
+        if (current >= max) storageSet(`${option}.max`, max).catch(console.error);
 
-      return {
-        progress: {
-          ...state.progress,
-          [option]: { current, max },
-        },
-      };
-    });
+        // Update the state mutably with Immer
+        state.progress[option].current = current;
+        state.progress[option].max = max;
+      }),
+    );
   },
-  restart: (option: keyof ProgressScreenState) => {
-    return set((state) => {
-      const current = 0;
-      storageSet(`${option}.current`, 0).catch(console.error);
 
-      return {
-        progress: {
-          ...state.progress,
-          [option]: { ...state.progress[option], current },
-        },
-      };
-    });
+  restart: (option: keyof ProgressScreenState) => {
+    return set(
+      produce((state) => {
+        storageSet(`${option}.current`, 0).catch(console.error);
+        state.progress[option].current = 0; // Restart to 0
+      }),
+    );
   },
 
   reset: (option: keyof ProgressScreenState) => {
-    return set((state) => {
-      storageSet(`${option}.current`, 0).catch(console.error);
-      storageSet(`${option}.max`, 0).catch(console.error);
-
-      return {
-        progress: {
-          ...state.progress,
-          [option]: { current: 0, max: 0 },
-        },
-      };
-    });
+    return set(
+      produce((state) => {
+        storageSet(`${option}.current`, 0).catch(console.error);
+        storageSet(`${option}.max`, 0).catch(console.error);
+        state.progress[option] = { current: 0, max: 0 }; // Reset current and max to 0
+      }),
+    );
   },
 
   setInitialValues: (values: ProgressScreenState) => {

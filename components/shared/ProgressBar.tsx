@@ -37,7 +37,7 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
     <View className="flex-row justify-center items-center">
       <View className="flex-row h-5 flex-1 overflow-hidden rounded-xl bg-background-medium">
         <Animated.View className="rounded-xl bg-primary-500" style={[animatedStyle]}>
-          <View className="h-[25%] top-[20%] mx-1 rounded-lg bg-primary-300" />
+          <View className="h-[25%] top-[20%] mx-2 rounded-lg bg-primary-300" />
         </Animated.View>
       </View>
 
