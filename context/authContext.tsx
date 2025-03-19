@@ -23,8 +23,6 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-// TODO: change it to Zustand just for the sake of it
-
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const {
     data: user,
@@ -34,10 +32,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     fn: getCurrentUser,
   });
 
-  // const isLoggedIn = !!user;
   const isLoggedIn = true;
-
-  // console.log(JSON.stringify(user, null, 2));
 
   return (
     <AuthContext.Provider

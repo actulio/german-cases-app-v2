@@ -31,9 +31,9 @@ module.exports = {
           700: 'var(--color-tertiary-700)',
         },
         background: {
-          light: 'var(--color-background-light)',
-          medium: 'var(--color-background-medium)',
-          dark: 'var(--color-background-dark)',
+          primary: 'var(--color-background-primary)',
+          secondary: 'var(--color-background-secondary)',
+          tertiary: 'var(--color-background-tertiary)',
         },
 
         text: {
@@ -45,9 +45,12 @@ module.exports = {
         error: {
           300: 'var(--color-error-300)',
           500: 'var(--color-error-500)',
+          700: 'var(--color-error-700)',
         },
-        accent: {
-          500: 'var(--color-accent-500)',
+        success: {
+          300: 'var(--color-success-300)',
+          500: 'var(--color-success-500)',
+          700: 'var(--color-success-700)',
         },
         shadow: {
           500: 'var(--color-shadow-500)',
@@ -57,4 +60,3 @@ module.exports = {
   },
   plugins: [],
 };
-// error: '#F75555',

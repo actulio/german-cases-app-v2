@@ -35,14 +35,14 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
 
   return (
     <View className="flex-row justify-center items-center">
-      <View className="flex-row h-5 flex-1 overflow-hidden rounded-xl bg-background-medium">
+      <View className="flex-row h-5 flex-1 overflow-hidden rounded-xl bg-background-secondary">
         <Animated.View className="rounded-xl bg-primary-500" style={[animatedStyle]}>
           <View className="h-[25%] top-[20%] mx-2 rounded-lg bg-primary-300" />
         </Animated.View>
       </View>
 
       <Text
-        className={`font-rubik-medium text-base mx-2 ${stats.current === stats.max ? 'text-tertiary-500' : 'text-text-inactive'}`}
+        className={`font-rubik-medium text-base mx-2 ${stats.current === stats.max ? 'text-success-500' : 'text-text-inactive'}`}
       >
         {`${stats.current}/${stats.max}`}
       </Text>

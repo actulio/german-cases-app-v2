@@ -55,20 +55,23 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
 
   const getButtonStyles = () => {
     if (!hasSelection) {
-      return { backgroundColor: 'bg-accent-500', textColor: 'text-text-inactive' };
+      return {
+        colors: 'bg-background-secondary border-[#cccccc]',
+        textColor: 'text-text-inactive',
+      };
     }
 
     if (isSubmitted) {
       return {
-        backgroundColor: isCorrect ? 'bg-tertiary-500' : 'bg-error-500',
+        colors: isCorrect ? 'bg-success-500 border-success-700' : 'bg-error-500 border-error-700',
         textColor: 'text-text-active',
       };
     }
 
-    return { backgroundColor: 'bg-primary-500', textColor: 'text-text-active' };
+    return { colors: 'bg-primary-500 border-primary-300', textColor: 'text-text-active' };
   };
 
-  const { backgroundColor, textColor } = getButtonStyles();
+  const { colors, textColor } = getButtonStyles();
 
   return (
     <TouchableWithoutFeedback
@@ -76,9 +79,8 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
       onPress={onPress}
       className="flex-1"
     >
-      {/* FIXME: fix the border color on success/error */}
       <View
-        className={`${backgroundColor} items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 border-[#cccccc] z-20 overflow-hidden`}
+        className={`${colors} items-center justify-center absolute bottom-0 left-0 right-0 h-[60px] m-[50px] rounded-full border border-b-4 z-20 overflow-hidden`}
       >
         <Animated.View className="absolute" style={continueStyle}>
           <Text className={`${textColor} text-2xl font-rubik-bold`}>Answer</Text>

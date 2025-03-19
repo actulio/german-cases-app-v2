@@ -1,7 +1,7 @@
-import BottomSheet from '@/components/shared/BottomSheet';
 import ProgressBar from '@/components/shared/ProgressBar';
 import usePracticeStore from '@/store/practice';
 import { Link, useRouter } from 'expo-router';
+import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
 
@@ -11,17 +11,10 @@ export default function Index() {
   const reset = usePracticeStore.use.reset();
 
   const router = useRouter();
-
-  const cond = progress.definite.current >= 3 && progress.definite.current < 5;
+  const { toggleColorScheme } = useColorScheme();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <View className="bg-background-primary flex-1 justify-center items-center">
       <Text className="font-bold text-3xl my-10 font-rubik">Welcome to german cases app</Text>
       <Link href="/signIn">Sign in</Link>
       <Link href="/learn">Learn</Link>
@@ -29,6 +22,7 @@ export default function Index() {
 
       <Button title="Go to Definite" onPress={() => router.push('/articles/definite')} />
       <Button title="Go to indefinite" onPress={() => router.push('/articles/indefinite')} />
+      <Button title="Toggle color scheme" onPress={() => toggleColorScheme()} />
 
       <Text>{progress.definite.current}</Text>
       <Text>{progress.definite.max}</Text>
@@ -37,12 +31,6 @@ export default function Index() {
       <View className="w-[300px]">
         <ProgressBar stats={progress.definite} />
       </View>
-
-      <BottomSheet
-        shouldShow={cond}
-        isCorrect={progress.definite.current === 3 ? true : false}
-        text="dem"
-      />
     </View>
   );
 }

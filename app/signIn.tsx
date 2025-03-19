@@ -21,8 +21,9 @@ const SignIn = () => {
     }
   };
 
+  //FIXME: fix colors here
   return (
-    <SafeAreaView className="bg-white h-full">
+    <SafeAreaView className="bg-background-primary h-full">
       <ScrollView contentContainerClassName="h-full">
         <Image source={images.onboarding} className="w-full h-4/6" resizeMode="contain" />
         <View className="px-10">

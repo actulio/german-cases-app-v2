@@ -28,7 +28,7 @@ const GridOptions = (props: Props) => {
                 disabled={disabled}
                 onPressIn={() => handleOnPress(value)}
                 activeOpacity={0.3}
-                className={`justify-center items-center shadow-md mt-3 p-3 rounded-2xl h-[50px] w-[80px] ${selected !== value ? 'bg-background-light' : 'bg-primary-500'}`}
+                className={`justify-center items-center shadow-md mt-3 p-3 rounded-2xl h-[50px] w-[80px] ${selected !== value ? 'bg-background-primary' : 'bg-primary-500'}`}
               >
                 <Text
                   className={`font-rubik text-xl ${selected !== value ? 'text-text-inactive' : 'text-text-active'}`}

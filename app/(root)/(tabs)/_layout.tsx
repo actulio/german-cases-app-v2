@@ -1,3 +1,4 @@
+import { useTheme } from '@/hooks/useTheme';
 import { Tabs } from 'expo-router';
 import { BookOpenCheck, NotebookPen, UserRoundCog } from 'lucide-react-native';
 import { Text, View } from 'react-native';
@@ -22,11 +23,14 @@ const TabIcon = ({
   title: string;
 }) => {
   const Icon = icons[iconName];
+  const { colors } = useTheme();
 
   return (
     <View className="flex-1 mt-3 flex flex-col items-center">
-      {/* TODO: get correct colros from theme */}
-      <Icon size={focused ? 18 : 24} color={focused ? '#6A40D6' : '#666876'} />
+      <Icon
+        size={focused ? 18 : 24}
+        color={focused ? colors['--color-primary-500'] : colors['--color-text-inactive']}
+      />
       {focused && (
         <Text className="text-primary-300 font-rubik-medium text-xs w-full text-center mt-1">
           {title}
@@ -41,8 +45,9 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         tabBarShowLabel: false,
+        tabBarBackground: () => <View className="bg-background-primary flex-1"></View>,
         tabBarStyle: {
-          position: 'absolute',
+          // position: 'absolute',
           borderTopWidth: 1,
           minHeight: 70,
         },

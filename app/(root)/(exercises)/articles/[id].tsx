@@ -49,8 +49,8 @@ const ArticleExercises = () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center">
-      <View className="flex-1 justify-center items-center translate-y-[-50px] gap-10">
+    <View className="flex-1 justify-center items-center bg-background-primary">
+      <View className="flex-1 justify-center items-center translate-y-[-60px] gap-10">
         <ArticleCard
           choice={selected}
           title={randomOption.gCase}

@@ -1,5 +1,6 @@
 import GlowingWrapper from '@/components/shared/GlowWrapper';
 import { CaseOption, GenderOption } from '@/constants/articles';
+import { useTheme } from '@/hooks/useTheme';
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import Animated, {
@@ -19,6 +20,7 @@ interface Props {
 
 const ArticleCard = ({ title, subtitle, choice, isCorrect, isSubmitted }: Props) => {
   const translateX = useSharedValue(0);
+  const { colors } = useTheme();
 
   useEffect(() => {
     if (isSubmitted && !isCorrect) {
@@ -38,8 +40,7 @@ const ArticleCard = ({ title, subtitle, choice, isCorrect, isSubmitted }: Props)
   }));
 
   return (
-    // FIXME: get correct color from theme
-    <GlowingWrapper isGlowing={isSubmitted && isCorrect} glowColor="#9A73EB">
+    <GlowingWrapper isGlowing={isSubmitted && isCorrect} glowColor={colors['--color-primary-500']}>
       <Animated.View
         className="w-[250px] h-[200px] rounded-2xl mb-2 p-5 items-center justify-center shadow-lg bg-primary-500 "
         style={[animatedStyle]}
