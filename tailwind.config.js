@@ -37,7 +37,7 @@ module.exports = {
         },
 
         text: {
-          error: 'var(--color-text-error)',
+          primary: 'var(--color-text-primary)',
           active: 'var(--color-text-active)',
           inactive: 'var(--color-text-inactive)',
           disabled: 'var(--color-text-disabled)',

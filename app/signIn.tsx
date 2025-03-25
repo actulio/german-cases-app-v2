@@ -1,4 +1,3 @@
-import icons from '@/constants/icons';
 import images from '@/constants/images';
 import { useAuthContext } from '@/context/authContext';
 import { login } from '@/lib/appwrite';
@@ -39,7 +38,7 @@ const SignIn = () => {
             onPress={handleLogin}
           >
             <View className="flex flex-row items-center justify-center">
-              <Image source={icons.google} className="w-5 h-5" resizeMode="contain" />
+              <Image source={images.google} className="w-5 h-5" resizeMode="contain" />
               <Text className="text-lg font-rubik-medium text-black-300 ml-2">
                 Continue with Google
               </Text>

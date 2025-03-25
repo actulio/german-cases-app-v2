@@ -1,6 +1,6 @@
 import { vars } from 'nativewind';
 
-type ColorVars = Record<`--${string}`, string | number>;
+type ColorVars = Record<`--${string}`, string>;
 
 export const LIGHT_THEME: ColorVars = {
   '--color-primary-300': '#B79AF0',
@@ -21,6 +21,7 @@ export const LIGHT_THEME: ColorVars = {
   '--color-background-tertiary': '#a9b1bc',
   '--color-background-quaternary': '#657081',
 
+  '--color-text-primary': '#262626',
   '--color-text-active': '#FFFFFF',
   '--color-text-inactive': '#666666',
   '--color-text-disabled': '#F5F5F5',
@@ -56,9 +57,10 @@ export const DARK_THEME = {
   '--color-background-tertiary': '#22252b',
   '--color-background-quaternary': '#3a3a3a',
 
-  '--color-text-active': '#EAEAEA', // Soft white for text
-  '--color-text-inactive': '#888888', // Dimmed text
-  '--color-text-disabled': '#555555', // Very dimmed text
+  '--color-text-primary': '#f2f2f2',
+  '--color-text-active': '#EAEAEA',
+  '--color-text-inactive': '#888888',
+  '--color-text-disabled': '#555555',
 
   '--color-error-300': '#7a0606',
   '--color-error-500': '#F75555',
