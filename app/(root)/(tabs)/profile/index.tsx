@@ -1,6 +1,7 @@
 import { icons } from '@/constants/icons';
 import { useAuthContext } from '@/context/authContext';
 import { logout } from '@/lib/appwrite';
+import { useRouter } from 'expo-router';
 import { ArrowRight, LogOut, LucideIcon } from 'lucide-react-native';
 import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
@@ -25,6 +26,7 @@ const SettingsItem = ({ Icon, title, onPress, color, showArrow = true }: Setting
 
 const Profile = () => {
   const { user, refetch } = useAuthContext();
+  const router = useRouter();
 
   const handleLogout = async () => {
     const result = await logout();
@@ -57,11 +59,19 @@ const Profile = () => {
 
         <View className="flex flex-col mt-10">
           <SettingsItem Icon={icons.Languages} title="App language" />
-          <SettingsItem Icon={icons.RotateCcw} title="Reset progress" />
+          <SettingsItem
+            Icon={icons.RotateCcw}
+            title="Reset progress"
+            onPress={() => router.push('/profile/reset')}
+          />
         </View>
 
         <View className="flex flex-col mt-5 border-t border-text-primary pt-5 border-primary-200">
-          <SettingsItem Icon={icons.Palette} title="Theme" />
+          <SettingsItem
+            Icon={icons.Palette}
+            title="Theme"
+            onPress={() => router.push('/profile/theme')}
+          />
         </View>
 
         <View className="flex flex-col border-t mt-5 pt-5 border-text-primary">

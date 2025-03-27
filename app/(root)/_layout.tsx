@@ -21,10 +21,11 @@ export default function AppLayout() {
 
   return (
     // FIXME: maybe consider only the safe area
+
     <Stack
       screenOptions={{ headerStyle: { backgroundColor: colors['--color-background-primary'] } }}
     >
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />;
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
         name="(exercises)/articles/[id]" // FIXME: this name flashes going back on Android
         options={{
