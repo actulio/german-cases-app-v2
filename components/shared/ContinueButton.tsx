@@ -56,7 +56,7 @@ const ContinueButton = ({ hasSelection, isCorrect, isSubmitted, onPress }: Props
   const getButtonStyles = () => {
     if (!hasSelection) {
       return {
-        colors: 'bg-background-secondary border-[#cccccc]',
+        colors: 'bg-background-secondary border-background-tertiary',
         textColor: 'text-text-inactive',
       };
     }

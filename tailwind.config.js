@@ -34,6 +34,7 @@ module.exports = {
           primary: 'var(--color-background-primary)',
           secondary: 'var(--color-background-secondary)',
           tertiary: 'var(--color-background-tertiary)',
+          quaternary: 'var(--color-background-quaternary)',
         },
 
         text: {

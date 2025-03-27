@@ -21,15 +21,19 @@ export default function AppLayout() {
 
   return (
     // FIXME: maybe consider only the safe area
-
     <Stack
-      screenOptions={{ headerStyle: { backgroundColor: colors['--color-background-primary'] } }}
+      screenOptions={{
+        headerStyle: { backgroundColor: colors['--color-background-primary'] },
+        headerShadowVisible: false,
+      }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
         name="(exercises)/articles/[id]" // FIXME: this name flashes going back on Android
         options={{
           headerTitle: () => <ProgressHeader />,
+          headerTintColor: colors['--color-primary-300'],
+          contentStyle: { borderBottomWidth: 0 },
         }}
       />
     </Stack>

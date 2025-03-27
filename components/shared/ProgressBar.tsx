@@ -42,7 +42,7 @@ const ProgressBar = ({ stats }: ProgressBarProps) => {
       </View>
 
       <Text
-        className={`font-rubik-medium text-base mx-2 ${stats.current === stats.max ? 'text-success-500' : 'text-text-inactive'}`}
+        className={`font-rubik-medium text-lg mx-2 ${stats.current === stats.max ? 'text-success-500' : 'text-text-inactive'}`}
       >
         {`${stats.current}/${stats.max}`}
       </Text>

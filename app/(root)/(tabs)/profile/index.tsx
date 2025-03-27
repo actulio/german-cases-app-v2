@@ -1,4 +1,4 @@
-import { icons } from '@/constants/icons';
+import { Icons } from '@/constants/icons';
 import { useAuthContext } from '@/context/authContext';
 import { logout } from '@/lib/appwrite';
 import { useRouter } from 'expo-router';
@@ -43,14 +43,17 @@ const Profile = () => {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-32 px-7">
         <View className="flex flex-row items-center justify-between mt-5">
           <Text className="text-xl font-rubik-bold text-text-primary">Profile</Text>
-          <icons.Bell className="text-5 text-text-primary" />
+          <Icons.Bell className="text-5 text-text-primary" />
         </View>
 
         <View className="flex flex-row justify-center mt-5">
           <View className="flex flex-col items-center relative mt-5">
-            <Image source={{ uri: user?.avatar }} className="size-44 relative rounded-full" />
+            <Image
+              source={{ uri: user?.avatar }}
+              className="size-44 relative rounded-full bg-background-secondary"
+            />
             <TouchableOpacity className="absolute bottom-11 right-2">
-              <icons.Edit className="size-7 text-text-primary" />
+              <Icons.Edit className="size-7 text-text-primary" />
             </TouchableOpacity>
 
             <Text className="text-2xl font-rubik-bold mt-2 text-text-primary">{user?.name}</Text>
@@ -58,9 +61,9 @@ const Profile = () => {
         </View>
 
         <View className="flex flex-col mt-10">
-          <SettingsItem Icon={icons.Languages} title="App language" />
+          <SettingsItem Icon={Icons.Languages} title="App language" />
           <SettingsItem
-            Icon={icons.RotateCcw}
+            Icon={Icons.RotateCcw}
             title="Reset progress"
             onPress={() => router.push('/profile/reset')}
           />
@@ -68,7 +71,7 @@ const Profile = () => {
 
         <View className="flex flex-col mt-5 border-t border-text-primary pt-5 border-primary-200">
           <SettingsItem
-            Icon={icons.Palette}
+            Icon={Icons.Palette}
             title="Theme"
             onPress={() => router.push('/profile/theme')}
           />

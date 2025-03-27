@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   Bell,
+  ChevronDown,
   Edit,
   Languages,
   LogOut,
@@ -20,7 +21,7 @@ export const makeNativeWindIcon = (Icon: LucideIcon) => {
   }) as LucideIcon;
 };
 
-export const icons = {
+export const Icons = {
   LogOut: makeNativeWindIcon(LogOut),
   ArrowRight: makeNativeWindIcon(ArrowRight),
   Bell: makeNativeWindIcon(Bell),
@@ -29,4 +30,5 @@ export const icons = {
   RotateCcw: makeNativeWindIcon(RotateCcw),
   SunMoon: makeNativeWindIcon(SunMoon),
   Languages: makeNativeWindIcon(Languages),
+  ChevronDown: makeNativeWindIcon(ChevronDown),
 };

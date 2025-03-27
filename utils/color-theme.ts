@@ -52,10 +52,15 @@ export const DARK_THEME = {
   '--color-tertiary-500': '#3FAF94',
   '--color-tertiary-700': '#1E7D64',
 
-  '--color-background-primary': '#121417',
-  '--color-background-secondary': '#1a1d23',
-  '--color-background-tertiary': '#22252b',
-  '--color-background-quaternary': '#3a3a3a',
+  // '--color-background-primary': '#121417',
+  // '--color-background-secondary': '#2b303b',
+  // '--color-background-tertiary': '#414958',
+  // '--color-background-quaternary': '#576175',
+
+  '--color-background-primary': '#20242c',
+  '--color-background-secondary': '#363c4a',
+  '--color-background-tertiary': '#576175',
+  '--color-background-quaternary': '#121417',
 
   '--color-text-primary': '#f2f2f2',
   '--color-text-active': '#EAEAEA',

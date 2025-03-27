@@ -46,7 +46,7 @@ const ArticleCard = ({ title, subtitle, choice, isCorrect, isSubmitted }: Props)
         style={[animatedStyle]}
       >
         <Text className="text-3xl capitalize font-rubik-medium text-text-active">{title}</Text>
-        <Text className="text-2xl capitalize font-rubik-medium text-primary-700">{subtitle}</Text>
+        <Text className="text-2xl capitalize font-rubik-medium text-secondary-500">{subtitle}</Text>
         <View
           className={`${choice ? 'bg-transparent' : 'bg-primary-300'} items-center justify-center mt-4 h-10 w-20`}
         >
