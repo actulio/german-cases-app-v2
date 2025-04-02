@@ -1,50 +1,26 @@
-# Welcome to your Expo app 👋
+# German Cases App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Motivation
 
-## Get started
+I'm relearning German and wanted to refresh what I [previously learned](https://github.com/actulio/german-cases-app/) using React Native. To do so, I decided to build a second version of my old app—this time with the latest technologies and more complex code.
 
-1. Install dependencies
+The app features a file-based routing system, animations powered by [React Native Reanimated v3](https://docs.swmansion.com/react-native-reanimated/), stack and bottom tab navigators, [Zustand](https://zustand-demo.pmnd.rs/) for state management, [Appwrite](https://appwrite.io/) and Google OAuth for authentication, [Tailwind CSS](https://tailwindcss.com/) with [NativeWind](https://www.nativewind.dev/) for styling, and much more.
 
-   ```bash
-   npm install
-   ```
+## Screenshots and how to play
 
-2. Start the app
+The user selects an answer from six available options, while questions are displayed randomly on the main card. A progress bar at the top tracks the current correct streak. On the Profile page, users can switch between light and dark themes and reset their progress.
 
-   ```bash
-    npx expo start
-   ```
+![Login Screen](demo/login.png)
+![Usage](demo/usage.gif)
 
-In the output, you'll find options to open the app in a
+## Installation
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+First, you need to have installed [Expo](https://expo.io/) and a package manager such as Yarn or NPM. After downloading the project, install the dependencies with:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+`yarn install` or `npm install`
 
-## Get a fresh project
+Run the code with:
 
-When you're ready, run:
+`yarn start` or `npm start`
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Finally you can scan the Qrcode provided by the expo-cli or have an emulator up and running.
