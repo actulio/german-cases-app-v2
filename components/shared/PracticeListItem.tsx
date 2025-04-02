@@ -39,7 +39,7 @@ export const PracticeListItem = ({ item, onPress }: PracticeListItemProps) => {
         <View className="h-1 text-sm bg-text-inactive opacity-90">
           <View
             className="h-[100%] bg-success-500 rounded-md "
-            style={{ width: `${progress.current ? (progress.max / progress.current) * 100 : 0}%` }}
+            style={{ width: `${progress.max ? (progress.current / progress.max) * 100 : 0}%` }}
           />
         </View>
       </View>

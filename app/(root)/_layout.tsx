@@ -20,7 +20,6 @@ export default function AppLayout() {
   if (!isLoggedIn) return <Redirect href="/signIn" />;
 
   return (
-    // FIXME: maybe consider only the safe area
     <Stack
       screenOptions={{
         headerStyle: { backgroundColor: colors['--color-background-primary'] },

@@ -37,7 +37,6 @@ export const LIGHT_THEME: ColorVars = {
   '--color-shadow-500': '#cccccc',
 } as const;
 
-//TODO: actually put correct colors
 export const DARK_THEME = {
   '--color-primary-300': '#9d81e4',
   '--color-primary-500': '#401f93',
@@ -75,7 +74,7 @@ export const DARK_THEME = {
   '--color-success-500': '#247563',
   '--color-success-700': '#36b095',
 
-  '--color-shadow-500': '#111111', // Deep shadow for dark theme
+  '--color-shadow-500': '#111111',
 } as const;
 
 export const themes = {
