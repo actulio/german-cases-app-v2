@@ -1,6 +1,8 @@
 import {
   ArrowRight,
   Bell,
+  Book,
+  BookA,
   ChevronDown,
   Edit,
   Languages,
@@ -31,4 +33,8 @@ export const Icons = {
   SunMoon: makeNativeWindIcon(SunMoon),
   Languages: makeNativeWindIcon(Languages),
   ChevronDown: makeNativeWindIcon(ChevronDown),
+  BookA: makeNativeWindIcon(BookA),
+  Book: makeNativeWindIcon(Book),
 };
+
+export type IconName = keyof typeof Icons;

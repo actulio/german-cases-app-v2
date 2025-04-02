@@ -1,36 +1,64 @@
-import ProgressBar from '@/components/shared/ProgressBar';
+import { Exercise, PracticeListItem } from '@/components/shared/PracticeListItem';
+import { useTheme } from '@/hooks/useTheme';
 import usePracticeStore from '@/store/practice';
-import { Link, useRouter } from 'expo-router';
-import { useColorScheme } from 'nativewind';
+import { useRouter } from 'expo-router';
+
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 
-export default function Index() {
-  const progress = usePracticeStore.use.progress();
-  const increment = usePracticeStore.use.increment();
-  const reset = usePracticeStore.use.reset();
+const exercisesBase: Partial<Exercise>[] = [
+  {
+    title: 'Definite Article',
+    description: 'Learn when to use "der," "die," and "das"',
+    path: 'definite',
+    icon: 'Book',
+  },
+  {
+    title: 'Indefinite Article',
+    path: 'indefinite',
+    description: 'Understand "ein" and "eine" in different contexts.',
+    icon: 'BookA',
+  },
+] as const;
 
+const HomeScreen = () => {
   const router = useRouter();
-  const { toggleColorScheme } = useColorScheme();
+  const { colors } = useTheme();
+
+  const progress = usePracticeStore.use.progress();
+
+  const exercises: Exercise[] = exercisesBase.map(
+    (exercise, idx) =>
+      ({
+        ...exercise,
+        id: idx.toString(),
+        progress: progress[exercise.path as 'definite' | 'indefinite'],
+        color: colors['--color-primary-500'],
+      }) as Exercise,
+  );
+
+  const handleLessonPress = (lesson: Exercise) => {
+    router.push(`/articles/${lesson.path}`);
+  };
+
+  const renderLessonItem = ({ item }: { item: Exercise }) => (
+    <PracticeListItem item={item} onPress={handleLessonPress} />
+  );
 
   return (
-    <View className="bg-background-primary flex-1 justify-center items-center">
-      <Text className="font-bold text-3xl my-10 font-rubik">Welcome to german cases app</Text>
-      <Link href="/signIn">Sign in</Link>
-      <Link href="/learn">Learn</Link>
-      <Link href="/profile">Profile</Link>
-
-      <Button title="Go to Definite" onPress={() => router.push('/articles/definite')} />
-      <Button title="Go to indefinite" onPress={() => router.push('/articles/indefinite')} />
-      <Button title="Toggle color scheme" onPress={() => toggleColorScheme()} />
-
-      <Text>{progress.definite.current}</Text>
-      <Text>{progress.definite.max}</Text>
-      <Button title="Increment" onPress={() => increment('definite')} />
-      <Button title="Reset" onPress={() => reset('definite')} />
-      <View className="w-[300px]">
-        <ProgressBar stats={progress.definite} />
+    <SafeAreaView className="flex-1 bg-background-primary ">
+      <View className="items-center py-5 mt-5">
+        <Text className="text-text-primary text-2xl font-rubik-bold">List of exercises:</Text>
       </View>
-    </View>
+      <FlatList
+        data={exercises}
+        renderItem={renderLessonItem}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingVertical: 20 }}
+        showsVerticalScrollIndicator={false}
+      />
+    </SafeAreaView>
   );
-}
+};
+
+export default HomeScreen;

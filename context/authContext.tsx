@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     fn: getCurrentUser,
   });
 
-  const isLoggedIn = true;
+  const isLoggedIn = !!user;
 
   return (
     <AuthContext.Provider
