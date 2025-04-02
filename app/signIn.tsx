@@ -28,7 +28,7 @@ const SignIn = () => {
           resizeMode="cover"
         />
         <View className="absolute bottom-0 left-0 right-0 w-full h-[100px] bg-transparent">
-          {/* FIXME: this should be a SVG */}
+          {/* TODO: this should be a SVG */}
           <Image source={images.wave} className="w-full h-full" resizeMode="cover" />
         </View>
       </View>
