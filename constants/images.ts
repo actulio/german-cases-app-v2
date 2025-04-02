@@ -1,9 +1,9 @@
 import google from '@/assets/images/google.png';
-import onboarding from '@/assets/images/onboarding.png';
-import whiteGradient from '@/assets/images/white-gradient.png';
+import onboardingFlag from '@/assets/images/onboarding-flag-2.jpg';
+import wave from '@/assets/images/wave.png';
 
 export default {
-  onboarding,
-  whiteGradient,
+  onboardingFlag,
+  wave,
   google,
 };
