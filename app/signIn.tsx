@@ -3,10 +3,19 @@ import { useAuthContext } from '@/context/authContext';
 import { login } from '@/lib/appwrite';
 import { Redirect } from 'expo-router';
 import React from 'react';
-import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  useColorScheme,
+} from 'react-native';
 
 const SignIn = () => {
   const { refetch, loading, isLoggedIn } = useAuthContext();
+  const colorScheme = useColorScheme();
 
   if (!loading && isLoggedIn) return <Redirect href="/" />;
 
@@ -29,7 +38,11 @@ const SignIn = () => {
         />
         <View className="absolute bottom-0 left-0 right-0 w-full h-[100px] bg-transparent">
           {/* TODO: this should be a SVG */}
-          <Image source={images.wave} className="w-full h-full" resizeMode="cover" />
+          <Image
+            source={colorScheme === 'dark' ? images.wave : images.waveDark}
+            className="w-full h-full"
+            resizeMode="cover"
+          />
         </View>
       </View>
 
@@ -54,7 +67,6 @@ const SignIn = () => {
         </TouchableOpacity>
       </View>
     </ScrollView>
-    // </SafeAreaView>
   );
 };
 
